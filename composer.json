@@ -1,0 +1,44 @@
+{
+    "name": "i18nagent/laravel-locale-chain",
+    "description": "Configurable locale fallback chains for Laravel — fixes both single-fallback limitation and JSON fallback bug",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["laravel", "i18n", "locale", "fallback", "translation", "localization"],
+    "authors": [
+        {
+            "name": "i18nagent.ai",
+            "email": "hello@i18nagent.ai"
+        }
+    ],
+    "homepage": "https://github.com/i18n-agent/i18n-laravel-locale-chain",
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "illuminate/translation": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0|^11.0",
+        "orchestra/testbench": "^8.0|^9.0|^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "I18nAgent\\LocaleChain\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "I18nAgent\\LocaleChain\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "I18nAgent\\LocaleChain\\LocaleChainServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}
