@@ -73,6 +73,35 @@ class ChainTranslator extends Translator
     }
 
     /**
+     * Get a translation according to an integer value.
+     *
+     * @param  string  $key
+     * @param  \Countable|int|float|array  $number
+     * @param  array  $replace
+     * @param  string|null  $locale
+     * @return string
+     */
+     public function choice($key, $number, array $replace = [], $locale = null, $fallback=true)
+    {
+        $line = $this->get($key, [], $locale, $fallback);
+		
+        // If the given "number" is actually an array or countable we will simply count the
+        // number of elements in an instance. This allows developers to pass an array of
+        // items without having to count it on their end first which gives bad syntax.
+        if (is_countable($number)) {
+            $number = count($number);
+        }
+
+        if (! isset($replace['count'])) {
+            $replace['count'] = $number;
+        }
+		
+        return $this->makeReplacements(
+            $this->getSelector()->choose($line, $number, $locale), $replace
+        );
+    }
+
+    /**
      * Try to resolve a key for a specific locale (PHP files + JSON files).
      *
      * Returns null if the key is not found (as opposed to returning the key itself).
